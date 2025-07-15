@@ -1,4 +1,4 @@
-import Header from "../components/tables/table-one/Header/Header.jsx";
+import Header from "../components/tables/consumption/Header/Header.jsx";
 import { Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 

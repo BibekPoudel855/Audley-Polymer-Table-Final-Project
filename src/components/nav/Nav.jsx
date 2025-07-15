@@ -11,12 +11,17 @@ function Nav() {
 
   const navItems = [
     { id: 1, icon: <FiHome size={20} />, label: "Dashboard", path: "/" },
-    { id: 2, icon: <FiTable size={20} />, label: "Table One", path: "/table1" },
+    {
+      id: 2,
+      icon: <FiTable size={20} />,
+      label: "Raw Material Consumption",
+      path: "/consumption",
+    },
     {
       id: 4,
       icon: <FiTable size={20} />,
-      label: "Table Three",
-      path: "/table3",
+      label: "Production Output",
+      path: "/production",
     },
     {
       id: 5,

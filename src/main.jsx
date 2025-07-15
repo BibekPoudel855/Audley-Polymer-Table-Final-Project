@@ -3,17 +3,17 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import TableOneLayout from "./layouts/TableOneLayout.jsx";
-import TablesPage from "./components/tables/table-one/Table/Table.jsx";
+import TablesPage from "./components/tables/consumption/Table/Table.jsx";
 import TableOneContextProvider from "./contexts/TableOneContextProvider";
 import TableTwoContextProvider from "./contexts/TableTwoContextProvider";
 import TableThreeContextProvider from "./contexts/TableThreeContextProvider";
 import TableTwoLayout from "./layouts/TableTwoLayout";
 import TableThreeLayout from "./layouts/TableThreeLayout.jsx";
-import TableThreePage from "./components/tables/table-three/Table/Table3.jsx";
+import TableThreePage from "./components/tables/production/Table/Table3.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
 import Table from "./components/common/table-two/Table/Table.jsx";
-import Reports from "./components/Report/Reports.jsx";
+import Reports from "./components/Report/ReportList/Reports.jsx";
 import ReportsContextProvider from "./contexts/ReportsContextProvider.jsx";
 const router = createBrowserRouter([
   {
@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "table1",
+        path: "consumption",
         element: <TableOneLayout />,
         children: [
           {
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "table3",
+        path: "production",
         element: <TableThreeLayout />,
         children: [
           {

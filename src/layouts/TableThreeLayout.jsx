@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import TableThreeContextProvider from "../contexts/TableThreeContextProvider";
-import Header from "../components/tables/table-three/Header/Header";
+import Header from "../components/tables/production/Header/Header";
 import { Toaster } from "react-hot-toast";
 
 function TableThreeLayout() {
