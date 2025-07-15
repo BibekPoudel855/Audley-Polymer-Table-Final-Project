@@ -2,8 +2,9 @@ import { FiDownload, FiTrash, FiTrash2 } from "react-icons/fi";
 import { LuEye, LuArrowLeft } from "react-icons/lu";
 import { useReportContext } from "../../../contexts/ReportsContextProvider";
 import { useState } from "react";
+import ReportError from "../ReportError/ReportError";
 
-function ReportList() {
+function ReportList({ date, shift }) {
   const { savedReports, deleteReport } = useReportContext();
   const [currentLiveReport, setCurrentLiveReport] = useState(null);
 
@@ -45,6 +46,7 @@ function ReportList() {
     if (tableType === "Table One Data") {
       return (
         <div>
+          <div></div>
           <table className="w-full border border-gray-300 bg-white">
             <thead>
               <tr className="bg-blue-50">
@@ -76,6 +78,7 @@ function ReportList() {
     if (tableType === "Table Three Data") {
       return (
         <div>
+          <div></div>
           <table className="w-full border border-gray-300 bg-white">
             <thead>
               <tr className="bg-green-50">
@@ -93,7 +96,7 @@ function ReportList() {
             <tbody>
               {data.map((item) => (
                 <tr key={item.id}>
-                  <td className="text-center">
+                  <td className="text-center border border-gray-300">
                     {item.id || "N/A"}
                   </td>
                   <td className="border border-gray-300 px-4 py-3 text-center">
@@ -112,6 +115,8 @@ function ReportList() {
   };
 
   if (currentLiveReport) {
+    console.log();
+
     return (
       <div className="w-[90vw] mx-auto my-6">
         <div className="flex items-center justify-between mb-6 p-2">
@@ -126,7 +131,34 @@ function ReportList() {
           </h1>
         </div>
 
-        <div className="bg-white shadow-md rounded-lg p-6">
+        <div className="mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm text-gray-600 block">Date: </span>
+            <span className="text-gray-600">
+              {currentLiveReport.data?.headerData?.date || "N/A"}
+            </span>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm text-gray-600 block">Save Time: </span>
+            <span className="text-gray-600">
+              {currentLiveReport.data.exportInfo.exportTime.toString() || "N/A"}
+            </span>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm text-gray-600 block">Shift: </span>
+            <span className="text-gray-600">
+              {currentLiveReport.data?.headerData?.shift || "N/A"}
+            </span>
+          </div>
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-sm text-gray-600 block">Total Items: </span>
+            <span className="text-gray-600">
+              {currentLiveReport.data?.tableData?.length || 0}
+            </span>
+          </div>
+        </div>
+
+        <div className="bg-white shadow-md rounded-lg">
           {renderTableData(
             currentLiveReport.data.tableData,
             currentLiveReport.tableType
@@ -136,11 +168,28 @@ function ReportList() {
     );
   }
 
+  const filteredReports = savedReports.filter((report) => {
+    const reportDate = report.data.headerData.date;
+    const reportShift = report.data.headerData.shift;
+    if (reportDate && reportShift) {
+      const matchesDate = !date || reportDate === date;
+      const matchesShift = shift === "all" || reportShift === shift;
+
+      return matchesDate && matchesShift;
+    }
+  });
+
+  if (filteredReports.length === 0) {
+    return (
+      <div className="w-[90vw] mx-auto my-6">
+        <ReportError />
+      </div>
+    );
+  }
+
   return (
     <div className="w-[90vw] mx-auto my-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {savedReports.map((report) => {
-        console.log(report);
-
+      {filteredReports.map((report) => {
         return (
           <div
             key={report.id}
@@ -167,7 +216,7 @@ function ReportList() {
             </div>
             <div className="flex items-center justify-between mt-4">
               <button
-                className="w-[50%] flex items-center justify-center gap-2 bg-[#01ABEF] text-white text-1xl px-4 py-2 rounded hover:bg-[#21AAFF] transition-all duration-200"
+                className="w-[75%] flex items-center justify-center gap-2 bg-[#01ABEF] text-white text-1xl px-4 py-2 rounded hover:bg-[#21AAFF] transition-all duration-200"
                 onClick={() => handleCurrentViewReport(report)}
               >
                 <LuEye /> Report
@@ -178,12 +227,12 @@ function ReportList() {
               >
                 <FiDownload />
               </button>
-              <button
+              {/* <button
                 className="flex items-center bg-red-500 text-white text-2xl px-4 py-2 rounded hover:bg-red-600 transition-all duration-200"
                 onClick={() => handleDeleteReport(report.id)}
               >
                 <FiTrash2 />
-              </button>
+              </button> */}
             </div>
           </div>
         );

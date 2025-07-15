@@ -3,13 +3,10 @@ import { FiFilter } from "react-icons/fi";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";
 import "nepali-datepicker-reactjs/dist/index.css";
 
-function FilterReport() {
-  const [date, setDate] = useState();
-  const [shift, setShift] = useState("all");
-
+function FilterReport({ date, setDate, shift, setShift }) {
   const handleDateChange = (e) => {
     setDate(e);
-  }
+  };
   const handleShiftChange = (e) => {
     setShift(e.target.value);
   };

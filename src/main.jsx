@@ -13,8 +13,7 @@ import TableThreePage from "./components/tables/table-three/Table/Table3.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
 import Table from "./components/common/table-two/Table/Table.jsx";
-import Report from "./components/report/Report.jsx";
-import Reports from "./components/report/Reports.jsx";
+import Reports from "./components/Report/Reports.jsx";
 import ReportsContextProvider from "./contexts/ReportsContextProvider.jsx";
 const router = createBrowserRouter([
   {
@@ -54,10 +53,6 @@ const router = createBrowserRouter([
             element: <TableThreePage />,
           },
         ],
-      },
-      {
-        path: "report",
-        element: <Report />,
       },
       {
         path: "reports",
