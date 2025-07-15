@@ -1,0 +1,37 @@
+import { FiPackage } from "react-icons/fi";
+import { useTableTwoContext } from "../../../../../contexts/TableTwoContextProvider.jsx";
+import { GiWeight } from "react-icons/gi";
+function TableHeader() {
+  const { currentColumnName } = useTableTwoContext();
+
+  return (
+    <thead>
+      <tr>
+        <th
+          colSpan={3}
+          className="bg-gradient-to-r from-[#01ABEF] to-[#33BEFF] border border-[#01ABEF] text-white px-4 py-4 font-bold text-lg text-left "
+        >
+          <span className="flex items-center gap-4 text-left">
+            <span className="border-2 rounded-full p-2 bg-white">
+              <FiPackage className="text-xl md:text-2xl flex-shrink-0 text-[#01ABEF]" />
+            </span>
+            BOARD WEIGHT
+          </span>
+        </th>
+      </tr>
+      <tr>
+        <th className=" p-2 w-[10%] text-center font-semibold bg-[#01ABEF] border-b text-white border-[#0189cc]">
+          ID
+        </th>
+        <th className=" p-2 w-[30%] text-center font-semibold bg-[#01ABEF] border-b text-white border-[#0189cc]">
+          {currentColumnName}
+        </th>
+        <th className=" p-2 w-[60%] text-center font-semibold bg-[#01ABEF] border-b text-white border-[#0189cc]">
+          Reason
+        </th>
+      </tr>
+    </thead>
+  );
+}
+
+export default TableHeader;
