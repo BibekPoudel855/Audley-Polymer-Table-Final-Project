@@ -3,6 +3,8 @@ import { LuEye, LuArrowLeft } from "react-icons/lu";
 import { useReportContext } from "../../../contexts/ReportsContextProvider";
 import { useState } from "react";
 import ReportError from "../ReportError/ReportError";
+import ProductionTableReport from "./ProductionTableReport";
+import ConsumptionTableReport from "./ConsumptionTableReport";
 
 function ReportList({ date, shift }) {
   const { savedReports, deleteReport } = useReportContext();
@@ -44,79 +46,15 @@ function ReportList({ date, shift }) {
 
   const renderTableData = (data, tableType) => {
     if (tableType === "Table One Data") {
-      return (
-        <div>
-          <div></div>
-          <table className="w-full border border-gray-300 bg-white">
-            <thead>
-              <tr className="bg-blue-50">
-                <th className="border border-gray-300 px-4 py-3  font-semibold">
-                  Item Name
-                </th>
-                <th className="border border-gray-300 px-4 py-3  font-semibold">
-                  F1
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="border border-gray-300 px-4 py-3">
-                    {item.itemName || "N/A"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3">
-                    {console.log(item.fValues)}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
+      return <ConsumptionTableReport data={data} />;
     }
 
     if (tableType === "Table Three Data") {
-      return (
-        <div>
-          <div></div>
-          <table className="w-full border border-gray-300 bg-white">
-            <thead>
-              <tr className="bg-green-50">
-                <th className="border border-gray-300 px-4 py-3 text-left font-semibold">
-                  ID
-                </th>
-                <th className="border border-gray-300 px-4 py-3 text-left font-semibold">
-                  Item
-                </th>
-                <th className="border border-gray-300 px-4 py-3 text-left font-semibold">
-                  Weight
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {data.map((item) => (
-                <tr key={item.id}>
-                  <td className="text-center border border-gray-300">
-                    {item.id || "N/A"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-center">
-                    {item.item || "N/A"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-3 text-center">
-                    {item.weight || "N/A"}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      );
+      return <ProductionTableReport data={data} />;
     }
   };
 
   if (currentLiveReport) {
-    console.log();
-
     return (
       <div className="w-[90vw] mx-auto my-6">
         <div className="flex items-center justify-between mb-6 p-2">
