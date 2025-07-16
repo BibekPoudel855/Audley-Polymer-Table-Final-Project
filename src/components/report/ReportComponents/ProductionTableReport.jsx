@@ -1,4 +1,4 @@
-import { useTableThreeContext } from "../../../contexts/TableThreeContextProvider";
+import { useTableThreeContext } from "../../../contexts/ProductionTableContextProvider.jsx";
 
 function ProductionTableReport({ data }) {
   const { allProducts } = useTableThreeContext();

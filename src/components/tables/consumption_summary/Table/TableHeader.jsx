@@ -1,6 +1,5 @@
 import { FiPackage } from "react-icons/fi";
-import { useTableTwoContext } from "../../../../../contexts/TableTwoContextProvider.jsx";
-import { GiWeight } from "react-icons/gi";
+import { useTableTwoContext } from "../../../../contexts/ConsumptionReportContext.jsx";
 function TableHeader() {
   const { currentColumnName } = useTableTwoContext();
 
@@ -15,7 +14,7 @@ function TableHeader() {
             <span className="border-2 rounded-full p-2 bg-white">
               <FiPackage className="text-xl md:text-2xl flex-shrink-0 text-[#01ABEF]" />
             </span>
-            BOARD WEIGHT
+            Consumption Summary
           </span>
         </th>
       </tr>

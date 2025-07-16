@@ -1,4 +1,4 @@
-import { useTableThreeContext } from "../../../../contexts/TableThreeContextProvider.jsx";
+import { useTableThreeContext } from "../../../../contexts/ProductionTableContextProvider.jsx";
 
 function TableStatistics() {
   const { getStatisticsData } = useTableThreeContext();

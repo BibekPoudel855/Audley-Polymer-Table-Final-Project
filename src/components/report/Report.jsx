@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useReportContext } from "../../../contexts/ReportsContextProvider.jsx";
-import FilterReport from "../Filter/FilterReport.jsx";
-import Heading from "../Heading/Heading.jsx";
-import ReportError from "../ReportError/ReportError.jsx";
-import ReportList from "./ReportList.jsx";
+import { useReportContext } from "../../contexts/ReportsContextProvider.jsx";
+import FilterReport from "./Filter/FilterReport.jsx";
+import Heading from "./Heading/Heading.jsx";
+import ReportError from "./ReportError/ReportError.jsx";
+import ReportList from "./ReportComponents/ReportList.jsx";
 
-function Reports() {
+function Report() {
   const { savedReports } = useReportContext();
   const [date, setDate] = useState();
   const [shift, setShift] = useState("all");
@@ -26,4 +26,4 @@ function Reports() {
     </div>
   );
 }
-export default Reports;
+export default Report;

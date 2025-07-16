@@ -1,4 +1,4 @@
-import { useTableTwoContext } from "../../../../../contexts/TableTwoContextProvider.jsx";
+import { useTableTwoContext } from "../../../../contexts/ConsumptionReportContext.jsx";
 
 function TableRow({ data, index }) {
   const { currentColumnName, tableData, setTableData } = useTableTwoContext();

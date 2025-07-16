@@ -4,10 +4,9 @@ const TableTwoContext = createContext();
 const DEFAULT_DATA = [
   {
     ID: 1,
-    A: "",
-    "A+": "",
-    "A-": "",
-    Rejection: "",
+    Weight_Day: "",
+    Weight_Night: "",
+    Total: "",
   },
 ];
 
@@ -16,7 +15,7 @@ function useTableTwoContext() {
   return useContext(TableTwoContext);
 }
 
-function TableTwoContextProvider({ children }) {
+function ConsumptionReportContext({ children }) {
   const [tableData, setTableData] = useState(() => {
     const storedData = localStorage.getItem("tableData2nd");
     return storedData ? JSON.parse(storedData) : DEFAULT_DATA;
@@ -27,7 +26,7 @@ function TableTwoContextProvider({ children }) {
   const [addingNewRow, setAddingNewRow] = useState(false);
   const [newRowData, setNewRowData] = useState({});
   const columnNames = Object.keys(tableData[0]).filter((columnName) => {
-    return columnName !== "ID" && columnName !== "Rejection";
+    return columnName !== "ID" && columnName !== "Total";
   });
   return (
     <TableTwoContext.Provider
@@ -51,5 +50,5 @@ function TableTwoContextProvider({ children }) {
   );
 }
 
-export default TableTwoContextProvider;
+export default ConsumptionReportContext;
 export { useTableTwoContext };

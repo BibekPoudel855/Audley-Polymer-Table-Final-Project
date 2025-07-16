@@ -1,13 +1,8 @@
-import {
-  FiActivity,
-  FiArrowRight,
-  FiTable,
-  FiTrendingUp,
-} from "react-icons/fi";
+import { FiArrowRight, FiTable } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useTableOneContext } from "./../../../contexts/TableOneContextProvider";
-import { useTableTwoContext } from "../../../contexts/TableTwoContextProvider";
-import { useTableThreeContext } from "../../../contexts/TableThreeContextProvider";
+import { useTableOneContext } from "../../../contexts/ConsumptionTableContextProvider.jsx";
+import { useTableTwoContext } from "../../../contexts/ConsumptionReportContext.jsx";
+import { useTableThreeContext } from "../../../contexts/ProductionTableContextProvider.jsx";
 
 function TableList() {
   // Safe context usage with fallbacks
@@ -54,6 +49,16 @@ function TableList() {
       icon: <FiTable className="text-green-600" size={28} />,
       records: tableThreeLength,
       lastUpdated: "30 min ago",
+      status: "active",
+    },
+    {
+      id: 2,
+      title: "Consumption Summary Report",
+      description: "View and analyze raw material consumption data",
+      path: "/consumption-summary",
+      icon: <FiTable className="text-green-600" size={28} />,
+      records: 0,
+      lastUpdated: "Just now",
       status: "active",
     },
   ];

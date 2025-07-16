@@ -1,10 +1,8 @@
 import { useEffect } from "react";
-import { useTableTwoContext } from "../../../../contexts/TableTwoContextProvider.jsx";
-import TableControls from "../components/controls/TableControls.jsx";
-import NavigationControls from "../components/controls/NavigationControls.jsx";
-import TableHeader from "../components/table/TableHeader.jsx";
-import TableRow from "../components/table/TableRow.jsx";
-import AddingRow from "../components/table/AddingRow.jsx";
+import { useTableTwoContext } from "../../../../contexts/ConsumptionReportContext.jsx";
+import TableHeader from "./TableHeader.jsx";
+import TableRow from "./TableRow.jsx";
+import AddingRow from "./AddingRow.jsx";
 
 function Table() {
   const { tableData, currentColumnIDX, setCurrentColumnName, columnNames } =
@@ -23,7 +21,6 @@ function Table() {
   return (
     <div className="max-h-screen overflow-auto px-4">
       <div className="max-w-4xl mx-auto">
-        <TableControls />
 
         <div className="bg-white rounded-lg shadow-sm  overflow-hidden mb-30">
           <table className="w-full">
@@ -37,7 +34,6 @@ function Table() {
           </table>
         </div>
 
-        <NavigationControls />
       </div>
     </div>
   );

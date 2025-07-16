@@ -21,7 +21,7 @@ const useTableOneContext = () => {
 };
 
 // component which provides data to its children
-function TableOneContextProvider({ children }) {
+function ConsumptionTableContextProvider({ children }) {
   // ref of input field for adding new row item name
   const inputAddingRowItemNameREF = useRef();
 
@@ -87,5 +87,5 @@ function TableOneContextProvider({ children }) {
     </TableOneDataContext.Provider>
   );
 }
-export default TableOneContextProvider;
+export default ConsumptionTableContextProvider;
 export { useTableOneContext };

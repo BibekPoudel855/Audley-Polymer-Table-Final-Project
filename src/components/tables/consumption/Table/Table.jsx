@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useTableOneContext } from "../../../../contexts/TableOneContextProvider.jsx";
+import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import NextPrevControls from "../Footer/NextPrevControls.jsx";
 import AddResetControlSection from "../Footer/AddResetControls.jsx";
 import AddingNewRow from "../Footer/AddingNewRow.jsx";

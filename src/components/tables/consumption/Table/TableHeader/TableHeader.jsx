@@ -1,4 +1,4 @@
-import { useTableOneContext } from "../../../../../contexts/TableOneContextProvider.jsx";
+import { useTableOneContext } from "../../../../../contexts/ConsumptionTableContextProvider.jsx";
 
 function TableHeader() {
   // Importing context values

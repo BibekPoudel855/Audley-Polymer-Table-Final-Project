@@ -1,4 +1,4 @@
-import { useTableOneContext } from "../../../../contexts/TableOneContextProvider.jsx";
+import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { FiTrash2 } from "react-icons/fi";

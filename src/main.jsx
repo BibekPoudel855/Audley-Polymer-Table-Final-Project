@@ -2,18 +2,18 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import TableOneLayout from "./layouts/TableOneLayout.jsx";
+import ConsumptionLayout from "./layouts/ConsumptionLayout.jsx";
 import TablesPage from "./components/tables/consumption/Table/Table.jsx";
-import TableOneContextProvider from "./contexts/TableOneContextProvider";
-import TableTwoContextProvider from "./contexts/TableTwoContextProvider";
-import TableThreeContextProvider from "./contexts/TableThreeContextProvider";
-import TableTwoLayout from "./layouts/TableTwoLayout";
-import TableThreeLayout from "./layouts/TableThreeLayout.jsx";
+import ConsumptionTableContextProvider from "./contexts/ConsumptionTableContextProvider.jsx";
+import ConsumptionReportContext from "./contexts/ConsumptionReportContext.jsx";
+import ProductionTableContextProvider from "./contexts/ProductionTableContextProvider.jsx";
+import ConsumptionSummaryLayout from "./layouts/ConsumptionSummaryLayout.jsx";
+import ProductionLayout from "./layouts/ProductionLayout.jsx";
 import TableThreePage from "./components/tables/production/Table/Table3.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import Dashboard from "./components/dashboard/Dashboard.jsx";
-import Table from "./components/common/table-two/Table/Table.jsx";
-import Reports from "./components/Report/ReportList/Reports.jsx";
+import Table from "./components/tables/consumption_summary/Table/Table.jsx";
+import Report from "./components/report/Report.jsx";
 import ReportsContextProvider from "./contexts/ReportsContextProvider.jsx";
 const router = createBrowserRouter([
   {
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
       },
       {
         path: "consumption",
-        element: <TableOneLayout />,
+        element: <ConsumptionLayout />,
         children: [
           {
             index: true,
@@ -35,8 +35,8 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "table2",
-        element: <TableTwoLayout />,
+        path: "consumption-summary",
+        element: <ConsumptionSummaryLayout />,
         children: [
           {
             index: true,
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       },
       {
         path: "production",
-        element: <TableThreeLayout />,
+        element: <ProductionLayout />,
         children: [
           {
             index: true,
@@ -56,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: "reports",
-        element: <Reports />,
+        element: <Report />,
       },
     ],
   },
@@ -65,13 +65,14 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ReportsContextProvider>
-      <TableOneContextProvider>
-        <TableTwoContextProvider>
-          <TableThreeContextProvider>
+      <ConsumptionTableContextProvider>
+        <ConsumptionReportContext>
+          <ProductionTableContextProvider>
+          
             <RouterProvider router={router} />
-          </TableThreeContextProvider>
-        </TableTwoContextProvider>
-      </TableOneContextProvider>
+          </ProductionTableContextProvider>
+        </ConsumptionReportContext>
+      </ConsumptionTableContextProvider>
     </ReportsContextProvider>
   </StrictMode>
 );

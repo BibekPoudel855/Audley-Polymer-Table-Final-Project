@@ -1,0 +1,324 @@
+[
+  {
+    "id": 1,
+    "name": "CALCIUM CARBONATE (CaCO3)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 2,
+    "name": "PVC POWDER (PVC)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 3,
+    "name": "REUSED MATERIAL GRAIN (RMG)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 4,
+    "name": "REUSED MATERIAL DUST (RMG)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 5,
+    "name": "CONDITIONING AGENT (HL_80)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 6,
+    "name": "STABILITY (LF_603)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 7,
+    "name": "WHITE FOAM (HN_600)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 8,
+    "name": "G-60",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 9,
+    "name": "T-POWDER (T_166)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 10,
+    "name": "PE WAX (PW_100)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 11,
+    "name": "HIGH DENSITY OXIDISED WAX (OW_403)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 12,
+    "name": "YELLOW FOAM (HA_700)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 13,
+    "name": "WHITENING AGENT (OB_01)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 14,
+    "name": "ACRYLIC PROCESSING AID (HL_175)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 15,
+    "name": "ACM IMPACT MODIFIER (CPE_135A)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 16,
+    "name": "STERIC ACID TRIFFA-921 (SAT_921)",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 17,
+    "name": "3MM DIAMOND*",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 18,
+    "name": "4MM DIAMOND*",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 19,
+    "name": "5MM DIAMOND*",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 20,
+    "name": "6MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 21,
+    "name": "6MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 22,
+    "name": "6MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 23,
+    "name": "6MM DIAMOND",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 24,
+    "name": "8MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 25,
+    "name": "8MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 26,
+    "name": "8MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 27,
+    "name": "8MM DIAMOND",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 28,
+    "name": "10MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 29,
+    "name": "10MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 30,
+    "name": "10MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 31,
+    "name": "10MM DIAMOND*",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 32,
+    "name": "12MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 33,
+    "name": "12MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 34,
+    "name": "12MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 35,
+    "name": "12MM DIAMOND",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 36,
+    "name": "16MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 37,
+    "name": "16MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 38,
+    "name": "16MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 39,
+    "name": "16MM DIAMOND",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 40,
+    "name": "18MM BRONZE",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 41,
+    "name": "18MM SILVER",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 42,
+    "name": "18MM GOLD",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 43,
+    "name": "18MM DIAMOND",
+    "raw_material": true,
+    "waste": false,
+    "status": ""
+  },
+  {
+    "id": 44,
+    "name": "SIDE CUTTING STRIPE",
+    "raw_material": false,
+    "waste": true,
+    "status": ""
+  },
+  {
+    "id": 45,
+    "name": "SIDE CUTTING STRIPE",
+    "raw_material": false,
+    "waste": true,
+    "status": ""
+  },
+  {
+    "id": 46,
+    "name": "WASTE SHEET",
+    "raw_material": false,
+    "waste": true,
+    "status": ""
+  }
+]

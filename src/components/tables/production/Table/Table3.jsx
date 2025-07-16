@@ -1,5 +1,5 @@
 import { FiTrash2 } from "react-icons/fi";
-import { useTableThreeContext } from "../../../../contexts/TableThreeContextProvider.jsx";
+import { useTableThreeContext } from "../../../../contexts/ProductionTableContextProvider.jsx";
 import TableHeaderTitle from "./TableHeader/TableHeaderTitle.jsx";
 import TableHeader from "./TableHeader/TableHeader.jsx";
 import TableReset from "../Footer/TableReset.jsx";

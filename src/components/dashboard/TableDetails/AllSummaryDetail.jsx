@@ -1,8 +1,8 @@
 import { FiClock, FiPackage, FiTable } from "react-icons/fi";
 import { GiBrokenPottery } from "react-icons/gi";
-import { useTableOneContext } from "../../../contexts/TableOneContextProvider";
-import { useTableThreeContext } from "../../../contexts/TableThreeContextProvider";
-function AllTableStats() {
+import { useTableOneContext } from "../../../contexts/ConsumptionTableContextProvider.jsx";
+import { useTableThreeContext } from "../../../contexts/ProductionTableContextProvider.jsx";
+function AllSummaryDetail() {
   const { tableData } = useTableOneContext();
   const { getStatisticsData } = useTableThreeContext();
   const { totalDefects } = getStatisticsData();
@@ -56,4 +56,4 @@ function AllTableStats() {
   );
 }
 
-export default AllTableStats;
+export default AllSummaryDetail;

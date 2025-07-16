@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useTableOneContext } from "../../../../contexts/TableOneContextProvider.jsx";
+import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import { toast } from "react-hot-toast";
 function AddingNewRow() {
   const {

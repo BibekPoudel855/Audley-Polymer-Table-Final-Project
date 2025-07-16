@@ -70,7 +70,7 @@ function Nav() {
               <RxCross2
                 className={`text-[#01ABEF] text-2xl ${
                   isOpen ? "block" : "hidden"
-                } md:hidden`}
+                } lg:hidden`}
                 onClick={() => {
                   setIsOpen(!isOpen);
                 }}

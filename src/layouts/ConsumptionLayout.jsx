@@ -1,11 +1,8 @@
 import Header from "../components/tables/consumption/Header/Header.jsx";
 import { Outlet } from "react-router-dom";
-import { Toaster } from "react-hot-toast";
-
-function TableOneLayout() {
+function ConsumptionLayout() {
   return (
     <div className="w-full lg:w-[40%] mx-auto">
-      <Toaster position="top-right" reverseOrder={false} />
       <header>
         <Header />
       </header>
@@ -16,4 +13,4 @@ function TableOneLayout() {
   );
 }
 
-export default TableOneLayout;
+export default ConsumptionLayout;

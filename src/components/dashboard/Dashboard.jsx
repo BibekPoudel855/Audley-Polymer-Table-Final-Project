@@ -1,6 +1,6 @@
 import Header from "./Header/Heading";
-import AllTableStats from "./TablesSummary/AllTableStats";
-import TableList from "./TablesSummary/TableList";
+import AllSummaryDetail from "./TableDetails/AllSummaryDetail.jsx";
+import TableList from "./TableDetails/TableList";
 import Actions from "./Actions/Actions";
 
 function Dashboard() {
@@ -8,7 +8,7 @@ function Dashboard() {
     <>
       <div className="w-[90vw] mx-auto pb-10">
         <Header />
-        <AllTableStats />
+        <AllSummaryDetail />
         <TableList />
         <Actions />
       </div>

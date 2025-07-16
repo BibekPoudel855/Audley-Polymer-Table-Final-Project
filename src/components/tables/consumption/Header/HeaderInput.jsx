@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { useTableOneContext } from "../../../../contexts/TableOneContextProvider.jsx";
+import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import toast from "react-hot-toast";
 import { LuDot } from "react-icons/lu";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";

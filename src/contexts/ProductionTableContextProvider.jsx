@@ -41,7 +41,7 @@ function useTableThreeContext() {
   return useContext(TableThreeContext);
 }
 // context provider component
-function TableThreeContextProvider({ children }) {
+function ProductionTableContextProvider({ children }) {
   const { saveReport } = useReportContext();
   const [shift, setShift] = useState();
   const [date, setDate] = useState();
@@ -246,5 +246,5 @@ function TableThreeContextProvider({ children }) {
   );
 }
 
-export default TableThreeContextProvider;
+export default ProductionTableContextProvider;
 export { useTableThreeContext };
