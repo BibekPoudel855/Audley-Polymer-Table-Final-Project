@@ -40,7 +40,7 @@ function Nav() {
   return (
     <>
       <nav
-        className={`w-[90vw] mx-auto flex items-center justify-between py-2 md:hidden`}
+        className={`w-[90vw] mx-auto flex items-center justify-between py-2 lg:hidden`}
       >
         <Link to={"/"}>
           <img

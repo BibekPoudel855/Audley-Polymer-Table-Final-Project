@@ -142,21 +142,11 @@ function HeaderInput() {
               <button
                 className="bg-gradient-to-r from-[#01ABEF] to-[#33BEFF] hover:from-[#0189CC] hover:to-[#01ABEF] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex justify-center items-center gap-2 text-sm"
                 onClick={() => {
-                  handleSaveAllData();
-                }}
-              >
-                <FiSave className="text-base md:text-lg" />
-                <span className="hidden sm:inline">Save All Data</span>
-                <span className="sm:hidden">Save</span>
-              </button>
-              <button
-                type="button"
-                className="bg-sky-300 hover:bg-sky-400 text-slate-700 px-4 py-2 rounded-lg shadow-md transition-all duration-200"
-                onClick={() => {
                   setIsExpanded(false);
                 }}
               >
-                Cancel
+                <FiSave className="text-base md:text-lg" />
+                Save Configurations
               </button>
             </div>
           </form>

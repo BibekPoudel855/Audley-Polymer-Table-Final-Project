@@ -96,7 +96,7 @@ function ReportList({ date, shift }) {
           </div>
         </div>
 
-        <div className="bg-white shadow-md rounded-lg">
+        <div className="bg-white">
           {renderTableData(
             currentLiveReport.data.tableData,
             currentLiveReport.tableType

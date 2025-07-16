@@ -44,7 +44,6 @@ function ConsumptionTableReport({ data }) {
           </thead>
           <tbody>
             {data.map((item) => {
-              console.log(item);
 
               return (
                 <tr key={item.id} className="hover:bg-gray-50">
@@ -55,7 +54,6 @@ function ConsumptionTableReport({ data }) {
                     {item.itemName || "N/A"}
                   </td>
                   {columnNames.map((columnName) => {
-                    console.log(columnName);
 
                     return (
                       <td
@@ -72,20 +70,22 @@ function ConsumptionTableReport({ data }) {
 
             {/* Total data row */}
             <tr className="bg-blue-100 font-semibold">
-              <td className="border border-gray-300 px-4 py-3 text-center"></td>
-              <td className="border border-gray-300 px-4 py-3">Total</td>
-              {columnNames.map((columnName) => {
-                const total = data.reduce((sum, item) => {
-                  const value = parseFloat(item.fValues?.[columnName] || 0);
-                  return sum + (isNaN(value) ? 0 : value);
-                }, 0);
+              
+              <td className="border border-gray-300 px-4 py-3 text-center" colSpan={2}>Total</td>
 
+              {columnNames.map((column) => {
+                console.log(data);
+                let total = 0;
+                data.forEach((item) => {
+                  const value = parseFloat(item.fValues?.[column] || 0);
+                  total += isNaN(value) ? 0 : value;
+                });
                 return (
                   <td
-                    key={columnName}
+                    key={column}
                     className="border border-gray-300 px-4 py-3 text-center"
                   >
-                    {total.toFixed(2)}
+                    {total}
                   </td>
                 );
               })}
