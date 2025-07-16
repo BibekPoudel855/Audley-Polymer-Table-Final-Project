@@ -3,7 +3,8 @@ import { useTableTwoContext } from "../../../../contexts/ConsumptionReportContex
 import TableHeader from "./TableHeader.jsx";
 import TableRow from "./TableRow.jsx";
 import AddingRow from "./AddingRow.jsx";
-
+import Footer from "./../Footer/Footer.jsx";
+import ProductNotFoundErr from "./../../../../common/NotFoundError/ProductNotFoundErr.jsx";
 function Table() {
   const { tableData, currentColumnIDX, setCurrentColumnName, columnNames } =
     useTableTwoContext();
@@ -19,10 +20,9 @@ function Table() {
   }, [columnNames, currentColumnIDX, setCurrentColumnName]);
 
   return (
-    <div className="max-h-screen overflow-auto px-4">
-      <div className="max-w-4xl mx-auto">
-
-        <div className="bg-white rounded-lg shadow-sm  overflow-hidden mb-30">
+    <div className="w-full lg:w-[60vw] mx-auto">
+      <div className="bg-white rounded-lg shadow overflow-hidden mb-24 lg:mb-0">
+        <div className="overflow-x-auto">
           <table className="w-full">
             <TableHeader />
             <tbody>
@@ -34,6 +34,13 @@ function Table() {
           </table>
         </div>
 
+        <div className="px-4 py-3 border-t bg-gray-50">
+          <ProductNotFoundErr />
+        </div>
+      </div>
+
+      <div>
+        <Footer />
       </div>
     </div>
   );

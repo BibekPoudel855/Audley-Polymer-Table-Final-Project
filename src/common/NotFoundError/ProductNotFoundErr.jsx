@@ -1,6 +1,6 @@
 import { FiTable } from "react-icons/fi";
 
-function ReportError() {
+function ProductNotFoundErr() {
   return (
     <div className="flex flex-col items-center justify-center gap-1 h-[30vh]  md:h-[40vh] lg:h-[60vh] p-8 bg-white border border-gray-200 rounded-lg shadow-md my-8">
       <FiTable size={80} className="text-gray-400" />
@@ -12,4 +12,4 @@ function ReportError() {
   );
 }
 
-export default ReportError;
+export default ProductNotFoundErr;

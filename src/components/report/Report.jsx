@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useReportContext } from "../../contexts/ReportsContextProvider.jsx";
 import FilterReport from "./Filter/FilterReport.jsx";
 import Heading from "./Heading/Heading.jsx";
-import ReportError from "./ReportError/ReportError.jsx";
+import ProductNotFoundErr from "../../common/NotFoundError/ProductNotFoundErr.jsx";
 import ReportList from "./ReportComponents/ReportList.jsx";
 
 function Report() {
@@ -19,7 +19,7 @@ function Report() {
         setShift={setShift}
       />
       {savedReports.length === 0 ? (
-        <ReportError />
+        <ProductNotFoundErr />
       ) : (
         <ReportList date={date} shift={shift} />
       )}

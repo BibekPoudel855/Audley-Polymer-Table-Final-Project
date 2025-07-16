@@ -24,16 +24,16 @@ function Nav() {
       path: "/production",
     },
     {
+      id: 6,
+      icon: <FiTable size={20} />,
+      label: "Consumption Summary",
+      path: "/consumption-summary",
+    },
+    {
       id: 5,
       icon: <BiSolidReport size={22} />,
       label: "Reports",
       path: "/reports",
-    },
-    {
-      id: 6,
-      icon: <FiSettings size={20} />,
-      label: "Settings",
-      path: "/settings",
     },
   ];
 
@@ -105,6 +105,18 @@ function Nav() {
                 </li>
               ))}
             </ul>
+
+            <div className="border-t border-b border-gray-200">
+              <Link to={"profile"}>
+                <div className="flex items-center gap-2 p-4 hover:bg-gray-100">
+                  <div className="h-8 w-8 rounded-full bg-gray-300"></div>
+                  <div>
+                    <p className="font-semibold">Bibek Poudel</p>
+                    <p>bibek@example.com</p>
+                  </div>
+                </div>
+              </Link>
+            </div>
             <div className="border-t border-b border-gray-200">
               <Link
                 to={"/"}

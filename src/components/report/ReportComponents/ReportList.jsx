@@ -2,7 +2,7 @@ import { FiDownload, FiTrash, FiTrash2 } from "react-icons/fi";
 import { LuEye, LuArrowLeft } from "react-icons/lu";
 import { useReportContext } from "../../../contexts/ReportsContextProvider";
 import { useState } from "react";
-import ReportError from "../ReportError/ReportError";
+import ProductNotFoundErr from "../../../common/NotFoundError/ProductNotFoundErr.jsx";
 import ProductionTableReport from "./ProductionTableReport";
 import ConsumptionTableReport from "./ConsumptionTableReport";
 
@@ -120,7 +120,7 @@ function ReportList({ date, shift }) {
   if (filteredReports.length === 0) {
     return (
       <div className="w-[90vw] mx-auto my-6">
-        <ReportError />
+        <ProductNotFoundErr />
       </div>
     );
   }

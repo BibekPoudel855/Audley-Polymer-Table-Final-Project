@@ -4,13 +4,15 @@ import ConsumptionReportContext from "../contexts/ConsumptionReportContext.jsx";
 function ConsumptionSummaryLayout() {
   return (
     <ConsumptionReportContext>
-      <div className="w-[100vw] md:w-[70vw] lg:w-[40vw] md:mx-auto lg:mx-auto lg:py-5">
-        <header>
-          <Header />
-        </header>
-        <main>
-          <Outlet />
-        </main>
+      <div className="min-h-screen bg-gray-50">
+        <div className="w-full max-w-6xl mx-auto px-4 py-6">
+          <header className="mb-6">
+            <Header />
+          </header>
+          <main>
+            <Outlet />
+          </main>
+        </div>
       </div>
     </ConsumptionReportContext>
   );

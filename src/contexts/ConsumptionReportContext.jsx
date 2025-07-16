@@ -4,6 +4,7 @@ const TableTwoContext = createContext();
 const DEFAULT_DATA = [
   {
     ID: 1,
+    Product: "",
     Weight_Day: "",
     Weight_Night: "",
     Total: "",
@@ -26,7 +27,7 @@ function ConsumptionReportContext({ children }) {
   const [addingNewRow, setAddingNewRow] = useState(false);
   const [newRowData, setNewRowData] = useState({});
   const columnNames = Object.keys(tableData[0]).filter((columnName) => {
-    return columnName !== "ID" && columnName !== "Total";
+    return columnName !== "ID" && columnName !== "Product";
   });
   return (
     <TableTwoContext.Provider
