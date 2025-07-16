@@ -6,9 +6,8 @@ import ProductNotFoundErr from "../../../common/NotFoundError/ProductNotFoundErr
 import ProductionTableReport from "./ProductionTableReport";
 import ConsumptionTableReport from "./ConsumptionTableReport";
 
-function ReportList({ date, shift }) {
+function ReportList({ date, shift, currentLiveReport, setCurrentLiveReport }) {
   const { savedReports, deleteReport } = useReportContext();
-  const [currentLiveReport, setCurrentLiveReport] = useState(null);
 
   const handleCurrentViewReport = (report) => {
     setCurrentLiveReport(report);

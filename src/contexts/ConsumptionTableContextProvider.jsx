@@ -1,13 +1,20 @@
-import { createContext, useContext, useRef, useState } from "react";
+import { createContext, useContext, useMemo, useRef, useState } from "react";
+
+import { useMainContext } from "./MainContext";
 
 // data and functions to be shared across components
+// data structure for table data
+// {
+//   id: number;
+//   itemName: string;
+//   fValues: {
+//     [key]: string;
+//   };
+// }
 const LOCAL_STORAGE_KEY = "tableData";
 const LOCAL_STORAGE_TIMING_KEY = "timingData";
-const DEFAULT_DATA = [
-  { id: 1, itemName: "Calc Carbon", fValues: { F1: "" } },
-  { id: 2, itemName: "PVC Powder", fValues: { F1: "" } },
-  { id: 3, itemName: "Calcite", fValues: { F1: "" } },
-];
+
+// const DEFAULT_DATA = [];
 const DEFAULT_TIMING_DATA = {
   F1: {
     start: "",
@@ -20,8 +27,24 @@ const useTableOneContext = () => {
   return useContext(TableOneDataContext);
 };
 
-// component which provides data to its children
+// / ///  component which provides data to its children// / ///
 function ConsumptionTableContextProvider({ children }) {
+  const { productData } = useMainContext();
+  //
+  const DEFAULT_DATA = useMemo(() => {
+    if (!productData || productData.length === 0) {
+      return [];
+    }
+    return productData
+      .filter((product) => product.waste === false)
+      .map((product) => {
+        return {
+          id: product.id,
+          itemName: product.name,
+          fValues: { F1: "" },
+        };
+      });
+  }, [productData]);
   // ref of input field for adding new row item name
   const inputAddingRowItemNameREF = useRef();
 

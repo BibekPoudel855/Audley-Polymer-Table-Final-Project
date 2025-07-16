@@ -15,6 +15,7 @@ import Dashboard from "./components/dashboard/Dashboard.jsx";
 import Table from "./components/tables/consumption_summary/Table/Table.jsx";
 import Report from "./components/report/Report.jsx";
 import ReportsContextProvider from "./contexts/ReportsContextProvider.jsx";
+import MainContextProvider from "./contexts/MainContext.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,15 +65,16 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ReportsContextProvider>
-      <ConsumptionTableContextProvider>
-        <ConsumptionReportContext>
-          <ProductionTableContextProvider>
-          
-            <RouterProvider router={router} />
-          </ProductionTableContextProvider>
-        </ConsumptionReportContext>
-      </ConsumptionTableContextProvider>
-    </ReportsContextProvider>
+    <MainContextProvider>
+      <ReportsContextProvider>
+        <ConsumptionTableContextProvider>
+          <ConsumptionReportContext>
+            <ProductionTableContextProvider>
+              <RouterProvider router={router} />
+            </ProductionTableContextProvider>
+          </ConsumptionReportContext>
+        </ConsumptionTableContextProvider>
+      </ReportsContextProvider>
+    </MainContextProvider>
   </StrictMode>
 );

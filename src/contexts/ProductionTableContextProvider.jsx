@@ -1,29 +1,10 @@
 import { createContext, use, useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useReportContext } from "./ReportsContextProvider";
-import { set } from "react-hook-form";
+import { useMainContext } from "./MainContext";
 
-const allProducts = [
-  { value: "calc_carbonate", label: " Carbonate", waste: true },
-  { value: "calc_sulphate", label: " Sulphate", waste: true },
-  { value: "calc_phosphate", label: " Phosphate", waste: true },
-  { value: "calc_citrate", label: " Citrate", waste: true },
-  { value: "calc_gluconate", label: " Gluconate", waste: true },
-  { value: "calc_lactate", label: " Lactate", waste: true },
-  { value: "calc_aspartate", label: " Aspartate", waste: false },
-  { value: "calc_oxalate", label: " Oxalate", waste: false },
-  { value: "calc_borate", label: " Borate", waste: false },
-  { value: "calc_silicate", label: " Silicate", waste: false },
-  {
-    value: "calc_citrate_malate",
-    label: "Calcium Citrate Malate",
-    waste: false,
-  },
-  {
-    value: "calc_citrate_gluconate",
-    label: "Calcium Citrate Gluconate",
-    waste: false,
-  },
+let allProducts = [
+  // { value: "calc_carbonate", label: " Carbonate", waste: true },
 ];
 
 const DEFAULT_TABLE_DATA = [
@@ -42,6 +23,14 @@ function useTableThreeContext() {
 }
 // context provider component
 function ProductionTableContextProvider({ children }) {
+  const { productData } = useMainContext();
+  allProducts = productData.map((product) => ({
+    id: product.id,
+    value: product.name,
+    label: product.name,
+    waste: product.waste,
+  }));
+
   const { saveReport } = useReportContext();
   const [shift, setShift] = useState();
   const [date, setDate] = useState();

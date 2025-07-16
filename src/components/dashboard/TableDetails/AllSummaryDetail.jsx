@@ -1,11 +1,11 @@
 import { FiClock, FiPackage, FiTable } from "react-icons/fi";
 import { GiBrokenPottery } from "react-icons/gi";
-import { useTableOneContext } from "../../../contexts/ConsumptionTableContextProvider.jsx";
-import { useTableThreeContext } from "../../../contexts/ProductionTableContextProvider.jsx";
+import { useMainContext } from "../../../contexts/MainContext.jsx";
 function AllSummaryDetail() {
-  const { tableData } = useTableOneContext();
-  const { getStatisticsData } = useTableThreeContext();
-  const { totalDefects } = getStatisticsData();
+  const { productData } = useMainContext();
+
+  const totalWaste = productData.filter((product) => product.waste).length;
+  
   const stats = [
     {
       id: 1,
@@ -16,13 +16,13 @@ function AllSummaryDetail() {
     {
       id: 2,
       title: "Total Products",
-      value: tableData.length,
+      value: productData.length,
       icon: <FiPackage className="text-green-600" size={24} />,
     },
     {
       id: 3,
-      title: "Damaged Products",
-      value: totalDefects,
+      title: "Waste Products",
+      value: totalWaste,
       icon: <GiBrokenPottery className="text-red-600" size={24} />,
     },
     {
@@ -37,7 +37,10 @@ function AllSummaryDetail() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 my-6">
       {stats.map((stat) => {
         return (
-          <div key={stat.id} className="bg-gray-100 rounded-2xl p-4 hover:shadow-lg transition-shadow duration-300">
+          <div
+            key={stat.id}
+            className="bg-gray-100 rounded-2xl p-4 hover:shadow-lg transition-shadow duration-300"
+          >
             <div className="flex flex-col items-center">
               <div
                 className={`bg-white w-10 h-10 rounded flex items-center justify-center`}

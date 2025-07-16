@@ -3,7 +3,7 @@ import { FiFilter } from "react-icons/fi";
 import { NepaliDatePicker } from "nepali-datepicker-reactjs";
 import "nepali-datepicker-reactjs/dist/index.css";
 
-function FilterReport({ date, setDate, shift, setShift }) {
+function FilterReport({ date, setDate, shift, setShift, currentLiveReport }) {
   const handleDateChange = (e) => {
     setDate(e);
   };
@@ -19,22 +19,27 @@ function FilterReport({ date, setDate, shift, setShift }) {
       </h1>
 
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-4 w-full">
-        <div className="flex flex-col sm:flex-row sm:items-center mb-4 md:w-[40%] gap-4">
+        <div
+          className={`flex flex-col sm:flex-row sm:items-center mb-4 md:w-[40%] gap-4 ${
+            currentLiveReport ? "opacity-50 pointer-events-none" : ""
+          }`}
+        >
           <label className="text-gray-700">Date:</label>
           <NepaliDatePicker
             inputClassName="form-control outline-0"
             className="border border-gray-300 p-2 rounded-md w-[100%]"
             value={date}
             onChange={handleDateChange}
-            options={{ calenderLocale: "ne", valueLocale: "en" }}
+            options={{ calendarLocale: "ne", valueLocale: "en" }}
           />
         </div>
-        <div className="flex flex-col sm:flex-row sm:items-center mb-4 sm:w-[40%] gap-4">
+        <div className={`${currentLiveReport ? "opacity-50" : ""}flex flex-col sm:flex-row sm:items-center mb-4 sm:w-[40%] gap-4`}>
           <label className="text-gray-700">Shift:</label>
           <select
-            className="border border-gray-300 p-2 rounded-md w-[100%]"
+            className={`border border-gray-300 p-2 rounded-md w-[100%] ${currentLiveReport ? "opacity-50" : ""}`}
             onChange={handleShiftChange}
             value={shift}
+            disabled={currentLiveReport}
           >
             <option value="all">All</option>
             <option value="day">Day</option>

@@ -9,6 +9,7 @@ function Report() {
   const { savedReports } = useReportContext();
   const [date, setDate] = useState();
   const [shift, setShift] = useState("all");
+  const [currentLiveReport, setCurrentLiveReport] = useState(null);
   return (
     <div className=" w-[90vw] mx-auto">
       <Heading />
@@ -17,11 +18,13 @@ function Report() {
         setDate={setDate}
         shift={shift}
         setShift={setShift}
+        currentLiveReport={currentLiveReport}
+        setCurrentLiveReport={setCurrentLiveReport}
       />
       {savedReports.length === 0 ? (
         <ProductNotFoundErr />
       ) : (
-        <ReportList date={date} shift={shift} />
+        <ReportList date={date} shift={shift} currentLiveReport={currentLiveReport} setCurrentLiveReport={setCurrentLiveReport} />
       )}
     </div>
   );

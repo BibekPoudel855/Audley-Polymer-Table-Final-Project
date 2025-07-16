@@ -1,34 +1,14 @@
 import { FiArrowRight, FiTable } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { useTableOneContext } from "../../../contexts/ConsumptionTableContextProvider.jsx";
-import { useTableTwoContext } from "../../../contexts/ConsumptionReportContext.jsx";
 import { useTableThreeContext } from "../../../contexts/ProductionTableContextProvider.jsx";
 
 function TableList() {
-  // Safe context usage with fallbacks
-  let tableOneLength = 0;
-  let tableTwoLength = 0;
-  let tableThreeLength = 0;
-  try {
-    const { tableData } = useTableOneContext();
-    tableOneLength = tableData?.length || 0;
-  } catch (error) {
-    console.log("errr");
-  }
 
-  try {
-    const { tableData: tableDataTwo } = useTableTwoContext();
-    tableTwoLength = tableDataTwo?.length || 0;
-  } catch (error) {
-    console.log("Errror");
-  }
+  const { tableData } = useTableOneContext();
 
-  try {
-    const { tableData: tableDataThree } = useTableThreeContext();
-    tableThreeLength = tableDataThree?.length || 0;
-  } catch (error) {
-    console.log("Errror");
-  }
+ 
+  const { tableData: tableDataThree } = useTableThreeContext();
 
   const tablesDetails = [
     {
@@ -37,7 +17,7 @@ function TableList() {
       description: "Store raw material consumption and timing data",
       path: "/consumption",
       icon: <FiTable className="text-green-600" size={28} />,
-      records: tableOneLength,
+      records: tableData?.length || 0,
       lastUpdated: "2 hours ago",
       status: "active",
     },
@@ -47,7 +27,7 @@ function TableList() {
       description: "Store data of production output and damaged details in kg",
       path: "/production",
       icon: <FiTable className="text-green-600" size={28} />,
-      records: tableThreeLength,
+      records: tableDataThree?.length || 0,
       lastUpdated: "30 min ago",
       status: "active",
     },
@@ -59,7 +39,7 @@ function TableList() {
       icon: <FiTable className="text-green-600" size={28} />,
       records: 0,
       lastUpdated: "Just now",
-      status: "active",
+      status: "deactive",
     },
   ];
   return (
@@ -75,7 +55,13 @@ function TableList() {
                 <div className="flex items-start justify-between mb-3">
                   <div className="p-2 bg-white rounded">{table.icon}</div>
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <div
+                      className={`w-2 h-2 ${
+                        table.status === "active"
+                          ? "bg-green-400"
+                          : "bg-red-400"
+                      } rounded-full animate-pulse`}
+                    ></div>
                     <span>
                       {table.status.charAt(0).toUpperCase() +
                         table.status.slice(1)}
