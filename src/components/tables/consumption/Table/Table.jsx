@@ -9,8 +9,7 @@ function Table() {
   const { timingData, tableData, setTableData, currentColumnName } =
     useTableOneContext();
 
-  // Removed localStorage effects - no auto-save for table data
-
+ 
   // Handle input change for table data
   const handleInputChange = (rowId, e) => {
     const updatedData = tableData.map((row) => {
@@ -74,19 +73,22 @@ function Table() {
                     {row.id}
                   </td>
                   <td className="px-4 py-2 w-[60%]">
-                    <input
+                    {/* <input
                       type="text"
-                      disabled
+                      readOnly
                       className={`w-full rounded px-3 py-2 text-ellipsis ${
                         row.itemName ? "border-0" : "border-1 border-gray-300"
                       }`}
                       value={row.itemName}
                       onChange={(e) => handleItemNameInputChange(row.id, e)}
-                    />
+                    /> */}
+                    <p className="text-md">{row.itemName}</p>
                   </td>
                   <td className="px-4 py-2 w-[30%]">
                     <input
                       type="number"
+                      min="0"
+                      step="0.001"
                       className={`w-full rounded px-3 py-2  text-ellipsis ${
                         row.fValues[currentColumnName]
                           ? "border-0"
@@ -102,16 +104,28 @@ function Table() {
                           return;
                         }
 
-                        // Check if value is negative
                         if (parseFloat(value) < 0) {
                           return;
                         }
 
-                        // Validate format: max 5 digits before decimal, max 3 after decimal
-                        const regex = /^\d{1,5}(\.\d{0,3})?$/;
-                        if (regex.test(value)) {
-                          handleInputChange(row.id, e);
+                        if (value.includes(".")) {
+                          const parts = value.split(".");
+                          const beforeDecimal = parts[0];
+                          const afterDecimal = parts[1];
+
+                          if (beforeDecimal.length > 5) {
+                            return;
+                          }
+                          if (afterDecimal.length > 3) {
+                            return;
+                          }
+                        } else {
+                          if (value.length > 5) {
+                            return;
+                          }
                         }
+
+                        handleInputChange(row.id, e);
                       }}
                     />
                   </td>
