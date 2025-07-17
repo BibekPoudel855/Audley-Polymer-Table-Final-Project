@@ -229,6 +229,8 @@ function ProductionTableContextProvider({ children }) {
       },
       tableData: tableData || [],
     };
+    console.log(allData);
+    
     saveReport(allData, "Table Three Data");
 
     toast.success("Data saved successfully!", {

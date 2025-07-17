@@ -13,34 +13,25 @@ function TableList() {
   const tablesDetails = [
     {
       id: 1,
-      title: "Table One",
+      title: "Consumption Table",
       description: "Store raw material consumption and timing data",
       path: "/consumption",
       icon: <FiTable className="text-green-600" size={28} />,
       records: tableData?.length || 0,
-      lastUpdated: "2 hours ago",
-      status: "active",
-    },
-    {
-      id: 3,
-      title: "Table Three",
-      description: "Store data of production output and damaged details in kg",
-      path: "/production",
-      icon: <FiTable className="text-green-600" size={28} />,
-      records: tableDataThree?.length || 0,
-      lastUpdated: "30 min ago",
+      lastUpdated: null,
       status: "active",
     },
     {
       id: 2,
-      title: "Consumption Summary Report",
-      description: "View and analyze raw material consumption data",
-      path: "/consumption-summary",
+      title: "Production Table",
+      description: "Store data of production output and damaged details in kg",
+      path: "/production",
       icon: <FiTable className="text-green-600" size={28} />,
-      records: 0,
-      lastUpdated: "Just now",
-      status: "deactive",
+      records: tableDataThree?.length || 0,
+      lastUpdated: null,
+      status: "active",
     },
+
   ];
   return (
     <div className="mt-4 mb-8">

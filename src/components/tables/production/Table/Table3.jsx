@@ -32,7 +32,9 @@ function Table3() {
                   <td className="p-1.5 w-[60%]">
                     <select
                       value={data.item}
-                      className={`w-full px-0 py-2 border rounded  ${data.item ? "border-0" : "border-1 border-gray-300"}`}
+                      className={`w-full px-0 py-2 border rounded  ${
+                        data.item ? "border-0" : "border-1 border-gray-300"
+                      }`}
                       onChange={(e) => {
                         updateTableData(data, e.target.value, "products");
                       }}
@@ -58,9 +60,17 @@ function Table3() {
                     <input
                       type="number"
                       placeholder="K.G."
-                      className={`w-full px-1 py-2 rounded  ${data.weight ? "border-0 " : "border-1 border-gray-300" }`}
+                      min="0"
+                      step="0.01"
+                      className={`w-full px-1 py-2 rounded  ${
+                        data.weight ? "border-0 " : "border-1 border-gray-300"
+                      }`}
                       onChange={(e) => {
-                        updateTableData(data, e.target.value, "weight");
+                        const value = e.target.value;
+                        // Prevent negative values
+                        if (value === "" || parseFloat(value) >= 0) {
+                          updateTableData(data, value, "weight");
+                        }
                       }}
                       value={data.weight ? data.weight : ""}
                     />

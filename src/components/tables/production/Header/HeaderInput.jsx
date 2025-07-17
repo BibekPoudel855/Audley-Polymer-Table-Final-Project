@@ -84,10 +84,7 @@ function HeaderInput() {
       </div>
       {isExpanded && (
         <div className=" flex flex-col gap-4 p-4 m-4 bg-gradient-to-r from-sky-50 to-sky-25 rounded-lg shadow-sm">
-          <div className="text-sm text-gray-600 mb-2">
-            <span className="text-red-500 mr-2">*</span>Please fill all red
-            fields
-          </div>
+
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col">
               <label className={labelStyles}>
@@ -151,6 +148,7 @@ function HeaderInput() {
             <div className="flex flex-col justify-center gap-4 mt-4">
               <button
                 className="bg-gradient-to-r from-[#01ABEF] to-[#33BEFF] hover:from-[#0189CC] hover:to-[#01ABEF] text-white px-4 md:px-6 py-2 md:py-3 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg flex justify-center items-center gap-2 text-sm"
+                type="button"
                 onClick={() => {
                   setIsExpanded(false);
                 }}

@@ -24,12 +24,6 @@ function Nav() {
       path: "/production",
     },
     {
-      id: 6,
-      icon: <FiTable size={20} />,
-      label: "Consumption Summary",
-      path: "/consumption-summary",
-    },
-    {
       id: 5,
       icon: <BiSolidReport size={22} />,
       label: "Reports",

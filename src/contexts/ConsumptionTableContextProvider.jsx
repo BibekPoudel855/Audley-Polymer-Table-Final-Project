@@ -76,6 +76,9 @@ function ConsumptionTableContextProvider({ children }) {
   const [currentColumnIndex, setCurrentColumnIndex] = useState(0);
   const [addingRowActive, setAddingRowActive] = useState(false);
 
+  // Simple header validation state
+  const [headerComplete, setHeaderComplete] = useState(false);
+
   // finding column name
   const columnNames =
     tableData.length > 0 ? Object.keys(tableData[0].fValues) : "F1";
@@ -89,6 +92,7 @@ function ConsumptionTableContextProvider({ children }) {
         DEFAULT_TIMING_DATA,
         tableData,
         setTableData,
+        DEFAULT_DATA,
         loading: productLoading,
         inputAddingRowItemNameREF,
         addingNewRowData,
@@ -99,6 +103,8 @@ function ConsumptionTableContextProvider({ children }) {
         setAddingRowActive,
         currentColumnName,
         columnNames,
+        headerComplete,
+        setHeaderComplete,
       }}
     >
       {children}

@@ -11,13 +11,6 @@ function Actions() {
       link: "/reports",
       bg: "bg-purple-500 hover:bg-purple-600",
     },
-    {
-      id: 2,
-      title: "Manage Users",
-      icon: <FiUsers size={20} />,
-      link: "/users",
-      bg: "bg-green-500 hover:bg-green-600",
-    },
   ];
   return (
     <div>

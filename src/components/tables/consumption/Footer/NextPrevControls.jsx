@@ -12,6 +12,7 @@ function NextPrevControls() {
     timingData,
     setTableData,
     setTimingData,
+    headerComplete,
   } = useTableOneContext();
 
   // Function to handle previous button click
@@ -40,7 +41,7 @@ function NextPrevControls() {
       }
     });
     if (
-      timingData[currentColumnName].start == "" &&
+      timingData[currentColumnName].start == "" ||
       timingData[currentColumnName].release == ""
     ) {
       isEmpty = true;
@@ -50,6 +51,15 @@ function NextPrevControls() {
 
   // Function to handle next button click
   const handleNextButtonClick = () => {
+    // Check header data first
+    if (!headerComplete) {
+      toast.error("Please fill all header fields first", {
+        id: "header-validation",
+        duration: 2000,
+      });
+      return;
+    }
+
     if (isCurrentColumnEmpty()) {
       toast.error("Please fill the current column before proceeding", {
         id: "empty-column-warning",

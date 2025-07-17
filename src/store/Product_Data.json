@@ -308,8 +308,14 @@
     "status": ""
   },
   {
-    "id": 45,
-
+    "id" : 45,
+    "name": "SIDE CUTTING POWDER",
+    "raw_material": false,
+    "waste": true,
+    "status": ""
+  },
+  {
+    "id": 46,
     "name": "WASTE SHEET",
     "raw_material": false,
     "waste": true,

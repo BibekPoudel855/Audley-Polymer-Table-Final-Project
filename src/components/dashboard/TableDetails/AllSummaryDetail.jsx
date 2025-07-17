@@ -5,20 +5,23 @@ function AllSummaryDetail() {
   const { productData } = useMainContext();
 
   const totalWaste = productData.filter((product) => product.waste).length;
-  
+  const totalRawMaterials = productData.filter(
+    (product) => product.raw_material
+  ).length;
+  const totalNonRawMaterials = productData.length - totalRawMaterials;
   const stats = [
     {
       id: 1,
-      title: "Total Table",
-      value: "3",
-      icon: <FiTable className="text-[#01ABEF]" size={24} />,
-    },
-    {
-      id: 2,
-      title: "Total Products",
-      value: productData.length,
+      title: "Raw Materials",
+      value: totalRawMaterials,
       icon: <FiPackage className="text-green-600" size={24} />,
     },
+    // {
+    //   id: 2,
+    //   title: "Non Raw Materials",
+    //   value: totalNonRawMaterials,
+    //   icon: <FiPackage className="text-green-600" size={24} />,
+    // },
     {
       id: 3,
       title: "Waste Products",
@@ -27,9 +30,9 @@ function AllSummaryDetail() {
     },
     {
       id: 4,
-      title: "Last Updated",
-      value: "2.4min",
-      icon: <FiClock className="text-orange-600" size={24} />,
+      title: "Total Products",
+      value: productData.length,
+      icon: <FiPackage className="text-green-600" size={24} />,
     },
   ];
 

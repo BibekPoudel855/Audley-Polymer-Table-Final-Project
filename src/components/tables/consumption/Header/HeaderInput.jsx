@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import toast from "react-hot-toast";
@@ -11,7 +11,7 @@ import { useReportContext } from "../../../../contexts/ReportsContextProvider.js
 
 function HeaderInput() {
   const { saveReport } = useReportContext();
-  const { tableData, timingData } = useTableOneContext();
+  const { tableData, timingData, setHeaderComplete } = useTableOneContext();
   const [date, setDate] = useState();
   const [shift, setShift] = useState("");
   const inputTextStyles =
@@ -19,6 +19,11 @@ function HeaderInput() {
 
   const [expanded, setExpanded] = useState(false);
   const { register, handleSubmit } = useForm();
+
+  // Simple form data tracking
+  const [thickness, setThickness] = useState("");
+  const [operator, setOperator] = useState("");
+  const [mixtureOperator, setMixtureOperator] = useState("");
 
   const setupSummaryDetals = [
     {
@@ -35,48 +40,20 @@ function HeaderInput() {
     },
   ];
 
+  useEffect(() => {
+    const isComplete =
+      date && shift && thickness && operator && mixtureOperator;
+    setHeaderComplete(isComplete);
+  }, [date, shift, thickness, operator, mixtureOperator, setHeaderComplete]);
+
   const exportData = (data) => {
-    // validating all fields
-    if (!date) {
-      toast.error("Date is Empty", {
+    if (!date || !shift || !thickness || !operator || !mixtureOperator) {
+      toast.error("Please fill all required fields", {
         duration: 1500,
         id: "validation-error",
       });
       return;
     }
-
-    if (!shift) {
-      toast.error("Shift is Empty", {
-        duration: 1500,
-        id: "validation-error",
-      });
-      return;
-    }
-
-    if (!data.thickness) {
-      toast.error("Thickness is Empty", {
-        duration: 1500,
-        id: "validation-error",
-      });
-      return;
-    }
-
-    if (!data.operator) {
-      toast.error("Operator is Empty", {
-        duration: 1500,
-        id: "validation-error",
-      });
-      return;
-    }
-
-    if (!data.mixtureOperator) {
-      toast.error("Mixture Operator is Empty", {
-        duration: 1500,
-        id: "validation-error",
-      });
-      return;
-    }
-
     if (!tableData || tableData.length === 0) {
       toast.error("Table data is empty", {
         duration: 1500,
@@ -90,10 +67,8 @@ function HeaderInput() {
 
     tableData.forEach((row) => {
       if (hasEmptyData) return;
-      console.log(row);
 
       const fieldValues = Object.values(row.fValues || {});
-      console.log(fieldValues);
 
       fieldValues.forEach((value) => {
         if (!value || value.trim() === "") {
@@ -103,13 +78,14 @@ function HeaderInput() {
     });
 
     if (hasEmptyData) {
-      toast.error("Empty tablee data", {
+      toast.error("Please fill all table data", {
         duration: 1500,
         id: "validation-error",
       });
       return;
     }
 
+    // Save data
     try {
       const allData = {
         exportInfo: {
@@ -118,23 +94,23 @@ function HeaderInput() {
         },
         headerData: {
           date: formatDisplayDate(date),
-          shift: data.shift || "Not selected",
-          thickness: data.thickness || "Not entered",
-          operator: data.operator || "Not entered",
-          mixtureOperator: data.mixtureOperator || "Not entered",
+          shift: shift,
+          thickness: thickness,
+          operator: operator,
+          mixtureOperator: mixtureOperator,
         },
-        tableData: tableData || [],
-        timingData: timingData || {},
+        tableData: tableData,
+        timingData: timingData,
       };
-      console.log(allData);
-      
-      saveReport(allData, "Table One Data");
 
-      toast.success("Data Saved Successfully!", {
-        duration: 1500,
+      // Save report to context
+      const reportId = saveReport(allData, "Table One Data");
+
+      toast.success("Report saved successfully!", {
+        duration: 2000,
       });
     } catch (error) {
-      toast.error("Export failed");
+      toast.error("Save failed");
     }
   };
 
@@ -190,10 +166,6 @@ function HeaderInput() {
       </div>
       {expanded && (
         <div className="w-[100%] bg-sky-50 py-4 rounded shadow-inner lg:p-0">
-          <div className="text-sm text-gray-600 mb-4 px-4">
-            <span className="text-red-500">*</span> Required fields must be
-            filled before saving
-          </div>
           <form
             onSubmit={handleSubmit(exportData)}
             noValidate
@@ -233,7 +205,8 @@ function HeaderInput() {
                 type="number"
                 className={inputTextStyles}
                 placeholder="Enter thickness in mm"
-                {...register("thickness")}
+                value={thickness}
+                onChange={(e) => setThickness(e.target.value)}
               />
             </div>
 
@@ -247,7 +220,8 @@ function HeaderInput() {
                 type="text"
                 className={inputTextStyles}
                 placeholder="Enter operator name"
-                {...register("operator")}
+                value={operator}
+                onChange={(e) => setOperator(e.target.value)}
               />
             </div>
 
@@ -261,7 +235,8 @@ function HeaderInput() {
                 type="text"
                 className={inputTextStyles}
                 placeholder="Enter mixture operator name"
-                {...register("mixtureOperator")}
+                value={mixtureOperator}
+                onChange={(e) => setMixtureOperator(e.target.value)}
               />
             </div>
             <div className="md:col-span-2 lg:col-span-3 flex gap-4 justify-end">

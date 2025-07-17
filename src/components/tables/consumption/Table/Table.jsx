@@ -76,14 +76,13 @@ function Table() {
                   <td className="px-4 py-2 w-[60%]">
                     <input
                       type="text"
-                      disabled 
+                      disabled
                       className={`w-full rounded px-3 py-2 text-ellipsis ${
                         row.itemName ? "border-0" : "border-1 border-gray-300"
                       }`}
                       value={row.itemName}
                       onChange={(e) => handleItemNameInputChange(row.id, e)}
                     />
-
                   </td>
                   <td className="px-4 py-2 w-[30%]">
                     <input
@@ -94,7 +93,26 @@ function Table() {
                           : "border-1 border-gray-300"
                       }`}
                       value={row.fValues[currentColumnName] || ""}
-                      onChange={(e) => handleInputChange(row.id, e)}
+                      onChange={(e) => {
+                        const value = e.target.value;
+
+                        // Allow empty value
+                        if (value === "") {
+                          handleInputChange(row.id, e);
+                          return;
+                        }
+
+                        // Check if value is negative
+                        if (parseFloat(value) < 0) {
+                          return;
+                        }
+
+                        // Validate format: max 5 digits before decimal, max 3 after decimal
+                        const regex = /^\d{1,5}(\.\d{0,3})?$/;
+                        if (regex.test(value)) {
+                          handleInputChange(row.id, e);
+                        }
+                      }}
                     />
                   </td>
                 </tr>
