@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useTableOneContext } from "../../../../contexts/ConsumptionTableContextProvider.jsx";
 import NextPrevControls from "../Footer/NextPrevControls.jsx";
 import AddResetControlSection from "../Footer/AddResetControls.jsx";
@@ -7,24 +6,10 @@ import TableHeader from "./TableHeader/TableHeader.jsx";
 
 function Table() {
   // Importing context values
-  const {
-    timingData,
-    LOCAL_STORAGE_TIMING_KEY,
-    LOCAL_STORAGE_KEY,
-    tableData,
-    setTableData,
-    currentColumnName,
-  } = useTableOneContext();
+  const { timingData, tableData, setTableData, currentColumnName } =
+    useTableOneContext();
 
-  // Effect to set  data  localStorage
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(tableData));
-  }, [tableData]);
-
-  // Effect to set timing data  localStorage
-  useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_TIMING_KEY, JSON.stringify(timingData));
-  }, [timingData]);
+  // Removed localStorage effects - no auto-save for table data
 
   // Handle input change for table data
   const handleInputChange = (rowId, e) => {
@@ -91,7 +76,9 @@ function Table() {
                   <td className="px-4 py-2 w-[60%]">
                     <input
                       type="text"
-                      className={`w-full rounded px-3 py-2 text-ellipsis ${row.itemName ? "border-0" : "border-1 border-gray-300"}`}
+                      className={`w-full rounded px-3 py-2 text-ellipsis ${
+                        row.itemName ? "border-0" : "border-1 border-gray-300"
+                      }`}
                       value={row.itemName}
                       onChange={(e) => handleItemNameInputChange(row.id, e)}
                     />
@@ -99,7 +86,11 @@ function Table() {
                   <td className="px-4 py-2 w-[30%]">
                     <input
                       type="number"
-                      className={`w-full rounded px-3 py-2  text-ellipsis ${row.fValues[currentColumnName] ? "border-0" : "border-1 border-gray-300"}`}
+                      className={`w-full rounded px-3 py-2  text-ellipsis ${
+                        row.fValues[currentColumnName]
+                          ? "border-0"
+                          : "border-1 border-gray-300"
+                      }`}
                       value={row.fValues[currentColumnName] || ""}
                       onChange={(e) => handleInputChange(row.id, e)}
                     />

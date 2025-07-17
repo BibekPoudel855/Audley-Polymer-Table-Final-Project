@@ -14,7 +14,7 @@ function TableHeader() {
             <span className="border-2 rounded-full p-2 bg-white">
               <FiPackage className="text-lg sm:text-xl md:text-2xl flex-shrink-0 text-[#01ABEF]" />
             </span>
-            <span className="text-sm sm:text-base md:text-lg">
+            <span className="">
               Consumption Summary
             </span>
           </span>

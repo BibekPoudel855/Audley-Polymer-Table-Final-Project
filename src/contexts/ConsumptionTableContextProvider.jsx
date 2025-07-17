@@ -1,4 +1,11 @@
-import { createContext, useContext, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 import { useMainContext } from "./MainContext";
 
@@ -11,26 +18,24 @@ import { useMainContext } from "./MainContext";
 //     [key]: string;
 //   };
 // }
-const LOCAL_STORAGE_KEY = "tableData";
-const LOCAL_STORAGE_TIMING_KEY = "timingData";
 
-// const DEFAULT_DATA = [];
 const DEFAULT_TIMING_DATA = {
   F1: {
     start: "",
     release: "",
   },
 };
-// creating context and using it by custom hook in the component
+// creating context
 const TableOneDataContext = createContext(null);
+// custom hook to use the context
 const useTableOneContext = () => {
   return useContext(TableOneDataContext);
 };
 
 // / ///  component which provides data to its children// / ///
 function ConsumptionTableContextProvider({ children }) {
-  const { productData } = useMainContext();
-  //
+  const { productData, loading: productLoading } = useMainContext();
+  // to prevent calculation on every execution
   const DEFAULT_DATA = useMemo(() => {
     if (!productData || productData.length === 0) {
       return [];
@@ -45,30 +50,27 @@ function ConsumptionTableContextProvider({ children }) {
         };
       });
   }, [productData]);
+  const [tableData, setTableData] = useState([]);
+
   // ref of input field for adding new row item name
   const inputAddingRowItemNameREF = useRef();
 
-  // state variables to manage table data
-  const [tableData, setTableData] = useState(() => {
-    const savedDataLocalStorage = localStorage.getItem(LOCAL_STORAGE_KEY);
-    if (savedDataLocalStorage) {
-      return JSON.parse(savedDataLocalStorage);
-    }
-    return DEFAULT_DATA;
-  });
+  // setting initial table data
+  useEffect(() => {
+    if (productLoading) return;
+    setTableData(DEFAULT_DATA);
+  }, [DEFAULT_DATA, productLoading]);
 
-  // state variable to manage timing data
-  const [timingData, setTimingData] = useState(() => {
-    const saveTimingDataLocalStorage = localStorage.getItem(
-      LOCAL_STORAGE_TIMING_KEY
-    );
-    if (saveTimingDataLocalStorage) {
-      return JSON.parse(saveTimingDataLocalStorage);
-    } else {
-      return DEFAULT_TIMING_DATA;
-    }
-  });
-  // state variable to manage adding new row data
+  // setting table data when tabledata is empty
+  // useEffect(() => {
+  //   if (!productLoading && DEFAULT_DATA.length > 0 && tableData.length === 0) {
+  //     setTableData(DEFAULT_DATA);
+  //   }
+  // }, [DEFAULT_DATA, productLoading, tableData.length]);
+
+  const [timingData, setTimingData] = useState(DEFAULT_TIMING_DATA);
+
+  // variable to manage adding new row data
   const [addingNewRowData, setAddingNewRowData] = useState({
     itemName: "",
     fValue: {
@@ -89,12 +91,10 @@ function ConsumptionTableContextProvider({ children }) {
       value={{
         timingData,
         setTimingData,
-        LOCAL_STORAGE_TIMING_KEY,
-        LOCAL_STORAGE_KEY,
-        DEFAULT_DATA,
         DEFAULT_TIMING_DATA,
         tableData,
         setTableData,
+        loading: productLoading,
         inputAddingRowItemNameREF,
         addingNewRowData,
         setAddingNewRowData,

@@ -26,9 +26,9 @@ function Table() {
           <table className="w-full">
             <TableHeader />
             <tbody>
-              {tableData.map((data, index) => (
+              {/* {tableData.map((data, index) => (
                 <TableRow key={data.ID} data={data} index={index} />
-              ))}
+              ))} */}
               <AddingRow />
             </tbody>
           </table>

@@ -1,11 +1,7 @@
-import { createContext, use, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useReportContext } from "./ReportsContextProvider";
 import { useMainContext } from "./MainContext";
-
-let allProducts = [
-  // { value: "calc_carbonate", label: " Carbonate", waste: true },
-];
 
 const DEFAULT_TABLE_DATA = [
   {
@@ -23,34 +19,29 @@ function useTableThreeContext() {
 }
 // context provider component
 function ProductionTableContextProvider({ children }) {
-  const { productData } = useMainContext();
-  allProducts = productData.map((product) => ({
-    id: product.id,
-    value: product.name,
-    label: product.name,
-    waste: product.waste,
-  }));
+  const { productData, loading: productLoading } = useMainContext();
+
+  //   to prevent calculation on every execute
+  const allProducts = useMemo(() => {
+    if (!productData || productData.length === 0) {
+      return [];
+    }
+    return productData.map((product) => ({
+      id: product.id,
+      value: product.name,
+      label: product.name,
+      waste: product.waste,
+    }));
+  }, [productData]);
 
   const { saveReport } = useReportContext();
   const [shift, setShift] = useState();
   const [date, setDate] = useState();
 
-  const [selectedProducts, setSelectedProducts] = useState(() => {
-    const savedProducts = localStorage.getItem("selectedProducts");
-    return savedProducts ? JSON.parse(savedProducts) : [];
-  });
-  const [tableData, setTableData] = useState(() => {
-    const savedData = localStorage.getItem("table3Data");
-    return savedData ? JSON.parse(savedData) : DEFAULT_TABLE_DATA;
-  });
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
-  useEffect(() => {
-    localStorage.setItem("table3Data", JSON.stringify(tableData));
-  }, [tableData]);
+  const [tableData, setTableData] = useState(DEFAULT_TABLE_DATA);
 
-  useEffect(() => {
-    localStorage.setItem("selectedProducts", JSON.stringify(selectedProducts));
-  }, [selectedProducts]);
 
   const handleDeleteProduct = (id) => {
     setTableData((prevData) => prevData.filter((data) => data.id !== id));
