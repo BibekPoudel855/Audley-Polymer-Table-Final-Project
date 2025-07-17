@@ -12,13 +12,14 @@ function MainContextProvider({ children }) {
   const [productData, setProductData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
   // function to load data from server
   useEffect(() => {
     const loadData = async () => {
       try {
         setLoading(true);
-        // const response = await fetch('https://jsonbin.io/quick-store/68785e543052b733d10dc80c');
+        // const response = await fetch(
+        //   "https://audley.free.beeceptor.com/"
+        // );
         // const data = await response.json();
         // setProductData(data);
 

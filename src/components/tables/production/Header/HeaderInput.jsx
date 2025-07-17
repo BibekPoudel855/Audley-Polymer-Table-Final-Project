@@ -84,9 +84,15 @@ function HeaderInput() {
       </div>
       {isExpanded && (
         <div className=" flex flex-col gap-4 p-4 m-4 bg-gradient-to-r from-sky-50 to-sky-25 rounded-lg shadow-sm">
+          <div className="text-sm text-gray-600 mb-2">
+            <span className="text-red-500 mr-2">*</span>Please fill all red
+            fields
+          </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col">
-              <label className={labelStyles}>DATE</label>
+              <label className={labelStyles}>
+                DATE <span className="text-red-500 ">*</span>
+              </label>
 
               <NepaliDatePicker
                 inputClassName="form-control outline-0"
@@ -97,7 +103,9 @@ function HeaderInput() {
               />
             </div>
             <div className="flex flex-col">
-              <label className={`${labelStyles} mt-2`}>SHIFT</label>
+              <label className={`${labelStyles} mt-2`}>
+                SHIFT <span className="text-red-500">*</span>
+              </label>
               <select
                 className="border border-sky-300 rounded-md p-2"
                 {...register("shift", { required: true })}
@@ -112,7 +120,9 @@ function HeaderInput() {
               </select>
             </div>
             <div className="flex flex-col ">
-              <label className={`${labelStyles} mt-2`}>PRODUCTS</label>
+              <label className={`${labelStyles} mt-2`}>
+                PRODUCTS <span className="text-red-500">*</span>
+              </label>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 p-4 bg-white rounded border-2 border-sky-200 shadow-lg ">
                 {allProducts.map((product) => (
                   <label

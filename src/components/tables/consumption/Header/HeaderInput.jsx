@@ -36,6 +36,80 @@ function HeaderInput() {
   ];
 
   const exportData = (data) => {
+    // validating all fields
+    if (!date) {
+      toast.error("Date is Empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!shift) {
+      toast.error("Shift is Empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!data.thickness) {
+      toast.error("Thickness is Empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!data.operator) {
+      toast.error("Operator is Empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!data.mixtureOperator) {
+      toast.error("Mixture Operator is Empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!tableData || tableData.length === 0) {
+      toast.error("Table data is empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    // chhecking if any row has empty value or not
+    let hasEmptyData = false;
+
+    tableData.forEach((row) => {
+      if (hasEmptyData) return;
+      console.log(row);
+
+      const fieldValues = Object.values(row.fValues || {});
+      console.log(fieldValues);
+
+      fieldValues.forEach((value) => {
+        if (!value || value.trim() === "") {
+          hasEmptyData = true;
+        }
+      });
+    });
+
+    if (hasEmptyData) {
+      toast.error("Empty tablee data", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
     try {
       const allData = {
         exportInfo: {
@@ -52,7 +126,8 @@ function HeaderInput() {
         tableData: tableData || [],
         timingData: timingData || {},
       };
-
+      console.log(allData);
+      
       saveReport(allData, "Table One Data");
 
       toast.success("Data Saved Successfully!", {
@@ -115,13 +190,19 @@ function HeaderInput() {
       </div>
       {expanded && (
         <div className="w-[100%] bg-sky-50 py-4 rounded shadow-inner lg:p-0">
+          <div className="text-sm text-gray-600 mb-4 px-4">
+            <span className="text-red-500">*</span> Required fields must be
+            filled before saving
+          </div>
           <form
             onSubmit={handleSubmit(exportData)}
             noValidate
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4"
           >
             <label className="flex flex-col">
-              <span className={labelStyles}>DATE: </span>
+              <span className={labelStyles}>
+                DATE: <span className="text-red-500">*</span>
+              </span>
               <NepaliDatePicker
                 inputClassName="form-control outline-0"
                 className="border border-sky-300 rounded-md p-2 outline-0"
@@ -132,10 +213,11 @@ function HeaderInput() {
             </label>
 
             <div className="flex flex-col">
-              <label className={labelStyles}>Shift :</label>
+              <label className={labelStyles}>
+                Shift: <span className="text-red-500">*</span>
+              </label>
               <select
                 className="border border-sky-300 rounded p-2 w-full focus:border-[#01ABEF] focus:ring-1 focus:ring-[#01ABEF] outline-none"
-                {...register("shift")}
                 onChange={(e) => setShift(e.target.value)}
               >
                 <option value="">Select Shift</option>
@@ -144,37 +226,42 @@ function HeaderInput() {
               </select>
             </div>
             <div className="flex flex-col">
-              <label className={labelStyles}>THICKNESS: (MM)</label>
+              <label className={labelStyles}>
+                THICKNESS: (MM) <span className="text-red-500">*</span>
+              </label>
               <input
                 type="number"
                 className={inputTextStyles}
-                {...register("thickness")}
                 placeholder="Enter thickness in mm"
-                step="0.1"
+                {...register("thickness")}
               />
             </div>
 
             <div className="flex flex-col">
               <label className={labelStyles}>
-                <span>OPERATOR: </span>
+                <span>
+                  OPERATOR: <span className="text-red-500">*</span>
+                </span>
               </label>
               <input
                 type="text"
                 className={inputTextStyles}
-                {...register("operator")}
                 placeholder="Enter operator name"
+                {...register("operator")}
               />
             </div>
 
             <div className="flex flex-col">
               <label className={labelStyles}>
-                <span>MIXTURE OPERATOR: </span>
+                <span>
+                  MIXTURE OPERATOR: <span className="text-red-500">*</span>
+                </span>
               </label>
               <input
                 type="text"
                 className={inputTextStyles}
-                {...register("mixtureOperator")}
                 placeholder="Enter mixture operator name"
+                {...register("mixtureOperator")}
               />
             </div>
             <div className="md:col-span-2 lg:col-span-3 flex gap-4 justify-end">

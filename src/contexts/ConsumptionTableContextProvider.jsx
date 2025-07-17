@@ -41,7 +41,9 @@ function ConsumptionTableContextProvider({ children }) {
       return [];
     }
     return productData
-      .filter((product) => product.waste === false)
+      .filter(
+        (product) => product.waste === false && product.raw_material === true
+      )
       .map((product) => {
         return {
           id: product.id,
@@ -60,13 +62,6 @@ function ConsumptionTableContextProvider({ children }) {
     if (productLoading) return;
     setTableData(DEFAULT_DATA);
   }, [DEFAULT_DATA, productLoading]);
-
-  // setting table data when tabledata is empty
-  // useEffect(() => {
-  //   if (!productLoading && DEFAULT_DATA.length > 0 && tableData.length === 0) {
-  //     setTableData(DEFAULT_DATA);
-  //   }
-  // }, [DEFAULT_DATA, productLoading, tableData.length]);
 
   const [timingData, setTimingData] = useState(DEFAULT_TIMING_DATA);
 

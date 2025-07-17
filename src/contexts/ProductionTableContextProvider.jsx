@@ -26,13 +26,16 @@ function ProductionTableContextProvider({ children }) {
     if (!productData || productData.length === 0) {
       return [];
     }
-    return productData.map((product) => ({
-      id: product.id,
-      value: product.name,
-      label: product.name,
-      waste: product.waste,
-    }));
-  }, [productData]);
+
+    return productData
+      .filter((product) => product.raw_material === false) // ✅ Keep only raw_material = false
+      .map((product) => ({
+        id: product.id,
+        value: product.name,
+        label: product.name,
+        waste: product.waste,
+      }));
+  }, [productData])
 
   const { saveReport } = useReportContext();
   const [shift, setShift] = useState();
@@ -41,7 +44,6 @@ function ProductionTableContextProvider({ children }) {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const [tableData, setTableData] = useState(DEFAULT_TABLE_DATA);
-
 
   const handleDeleteProduct = (id) => {
     setTableData((prevData) => prevData.filter((data) => data.id !== id));
@@ -166,21 +168,56 @@ function ProductionTableContextProvider({ children }) {
   };
 
   const handleSaveAllData = () => {
-    if (shift == "N/A" || date == "N/A") {
-      toast.error("Please select shift and date before saving.", {
+    if (!date || date === "N/A") {
+      toast.error("Date is Empty", {
         duration: 1500,
-        id: "save-error",
+        id: "validation-error",
       });
       return;
     }
-    if (tableData.length === 0) {
-      toast.error("No data to save!", {
+    if (!shift || shift === "N/A") {
+      toast.error("Shift is Empty", {
         duration: 1500,
-        id: "save-error",
+        id: "validation-error",
       });
       return;
     }
 
+    if (!selectedProducts || selectedProducts.length === 0) {
+      toast.error("Select at least one product", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    if (!tableData || tableData.length === 0) {
+      toast.error("Table data is empty", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+
+    const hasEmptyData = tableData.some((row) => {
+      if (
+        !row.item ||
+        !row.weight ||
+        row.item.trim() === "" ||
+        row.weight.toString().trim() === ""
+      ) {
+        return true;
+      }
+    });
+
+    if (hasEmptyData) {
+      toast.error("Please fill all column in table", {
+        duration: 1500,
+        id: "validation-error",
+      });
+      return;
+    }
+    // if all data pass then this will run
     const allData = {
       exportInfo: {
         exportDate: new Date().toLocaleDateString(),

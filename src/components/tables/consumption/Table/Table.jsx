@@ -76,12 +76,14 @@ function Table() {
                   <td className="px-4 py-2 w-[60%]">
                     <input
                       type="text"
+                      disabled 
                       className={`w-full rounded px-3 py-2 text-ellipsis ${
                         row.itemName ? "border-0" : "border-1 border-gray-300"
                       }`}
                       value={row.itemName}
                       onChange={(e) => handleItemNameInputChange(row.id, e)}
                     />
+
                   </td>
                   <td className="px-4 py-2 w-[30%]">
                     <input
